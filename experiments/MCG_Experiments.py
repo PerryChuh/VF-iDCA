@@ -45,23 +45,41 @@ def main():
     data_gen = MCG_DataGenerator(settings)
 
     o_data_list = [data_gen.matrix_completion_groups() for _ in range(num_repeat)]
-
-    # matrix_data_list = ["../matrix_data/matrices_" + str(i) + ".npy" for i in range(num_repeat)]
-    # for i in range(num_repeat):
-    #     with open(matrix_data_list[i], "wb") as f:
-    #         np.save(f, np.array(o_data_list[i].row_features))
-    #         np.save(f, np.array(o_data_list[i].col_features))
-    #         np.save(f, np.array(o_data_list[i].train_idx))
-    #         np.save(f, np.array(o_data_list[i].validate_idx))
-    #         np.save(f, np.array(o_data_list[i].test_idx))
-    #         np.save(f, np.array(o_data_list[i].observed_matrix))
-    #         np.save(f, np.array(o_data_list[i].real_alphas))
-    #         np.save(f, np.array(o_data_list[i].real_betas))
-    #         np.save(f, np.array(o_data_list[i].real_gamma))
-    #         np.save(f, np.array(o_data_list[i].real_matrix))
+    matrix_data_list = ["../matrix_data/matrices_" + str(i) + ".txt" for i in range(num_repeat)]
+    for i in range(num_repeat):
+        print("Data:", i + 1)
+        print("Row Features:")
+        print("Shape:", np.array(o_data_list[i].row_features).shape)
+        print(np.array(o_data_list[i].row_features))
+        print("Column Features:")
+        print("Shape:", np.array(o_data_list[i].col_features).shape)
+        print(np.array(o_data_list[i].col_features))
+        print("Train Index:")
+        print("Shape:", np.array(o_data_list[i].train_idx).shape)
+        print(np.array(o_data_list[i].train_idx))
+        print("Validate Index:")
+        print("Shape:", np.array(o_data_list[i].validate_idx).shape)
+        print(np.array(o_data_list[i].validate_idx))
+        print("Test Index:")
+        print("Shape:", np.array(o_data_list[i].test_idx).shape)
+        print(np.array(o_data_list[i].test_idx))
+        print("Observed Matrix:")
+        print("Shape:", np.array(o_data_list[i].observed_matrix).shape)
+        print(np.array(o_data_list[i].observed_matrix))
+        print("Real Alphas:")
+        print("Shape:", np.array(o_data_list[i].real_alphas).shape)
+        print(np.array(o_data_list[i].real_alphas))
+        print("Real Betas:")
+        print("Shape:", np.array(o_data_list[i].real_betas).shape)
+        print(np.array(o_data_list[i].real_betas))
+        print("Real Gamma:")
+        print("Shape:", np.array(o_data_list[i].real_gamma).shape)
+        print(np.array(o_data_list[i].real_gamma))
+        print("Real Matrix:")
+        print("Shape:", np.array(o_data_list[i].real_matrix).shape)
+        print(np.array(o_data_list[i].real_matrix))
 
     data = MCG_data(o_data_list[0])
-
     r = .1 * np.ones(1 + data.num_alphas + data.num_betas)
     r[0] = 1
     DC_Setting = {
